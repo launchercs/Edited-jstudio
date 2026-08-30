@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="jstudio Edited v1.0 - معرفی و اطلاعات پروژه GitHub">
+<title>jstudio Edited — GitHub Project</title>
+<style>
+:root{
+  --bg:#070b14;--card:rgba(17,24,39,.72);--card2:rgba(25,35,58,.7);
+  --text:#f5f7ff;--muted:#aab4c8;--primary:#7c5cff;--primary2:#20c7ff;
+  --border:rgba(255,255,255,.10);--shadow:0 20px 60px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(124,92,255,.22),transparent 30%),
+    radial-gradient(circle at 85% 20%,rgba(32,199,255,.14),transparent 28%),var(--bg);
+  color:var(--text);line-height:1.7;min-height:100vh;overflow-x:hidden
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(7,11,20,.72);
+  backdrop-filter:blur(18px);border-bottom:1px solid var(--border)
+}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-weight:900;font-size:20px;letter-spacing:.2px}
+.logo span{color:var(--primary2)}
+.navlinks{display:flex;gap:10px;align-items:center}
+.navlinks a,.lang{
+  padding:8px 12px;border:1px solid transparent;border-radius:12px;color:var(--muted);
+  background:transparent;cursor:pointer
+}
+.navlinks a:hover,.lang:hover{border-color:var(--border);color:var(--text);background:rgba(255,255,255,.04)}
+.hero{padding:90px 0 65px;text-align:center}
+.badge{
+  display:inline-flex;gap:8px;align-items:center;padding:7px 13px;border:1px solid var(--border);
+  border-radius:999px;background:rgba(255,255,255,.045);color:#cbd5e1;font-size:14px
+}
+.dot{width:8px;height:8px;border-radius:50%;background:#38e88a;box-shadow:0 0 14px #38e88a}
+h1{font-size:clamp(44px,8vw,82px);line-height:1.05;margin:22px 0 15px;
+  background:linear-gradient(100deg,#fff,#a9b5ff 45%,#50ddff);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:720px;margin:auto;color:var(--muted);font-size:18px}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 19px;
+  border-radius:13px;border:1px solid var(--border);font-weight:800;transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,var(--primary),#4b8cff);border:none}
+.secondary{background:rgba(255,255,255,.05)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0 70px}
+.stat,.card{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);
+  backdrop-filter:blur(15px)
+}
+.stat{padding:20px;text-align:center}
+.stat strong{display:block;font-size:25px}.stat span{color:var(--muted);font-size:13px}
+section{padding:35px 0}
+.section-title{font-size:30px;margin-bottom:8px}
+.section-sub{color:var(--muted);margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{padding:22px}
+.card .icon{font-size:28px;margin-bottom:10px}
+.card h3{font-size:18px;margin-bottom:6px}.card p{color:var(--muted);font-size:14px}
+.version{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.feature-list{display:grid;gap:10px}
+.feature{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);
+  border-radius:14px;background:rgba(255,255,255,.025)}
+.feature b{display:block}.feature small{color:var(--muted)}
+.code{
+  direction:ltr;text-align:left;background:#050811;border:1px solid var(--border);
+  border-radius:14px;padding:18px;color:#dce5ff;font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;overflow:auto
+}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{padding:18px;text-align:center;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.03)}
+.num{width:38px;height:38px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));font-weight:900}
+.repo{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.repo-url{direction:ltr;color:#72d8ff;word-break:break-all}
+footer{margin-top:60px;padding:30px 0;border-top:1px solid var(--border);color:var(--muted);text-align:center}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;
+  padding:11px 16px;border-radius:12px;background:#151d31;border:1px solid var(--border);
+  transition:.25s;z-index:50;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.top{position:fixed;bottom:22px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+  background:#121a2b;color:white;cursor:pointer;display:none}
+.loading{opacity:.6}
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,1fr)}.version{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}.navlinks a{display:none}
+}
+@media(max-width:520px){
+  .hero{padding-top:65px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}.repo{flex-direction:column;align-items:stretch}.btn{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">jstudio <span>Edited</span></a>
+    <nav class="navlinks">
+      <a href="#features">امکانات</a>
+      <a href="#version">نسخه 1.0</a>
+      <a href="#usage">نحوه استفاده</a>
+      <a href="#github">GitHub</a>
+      <button class="lang" id="copyBtn">کپی لینک</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Public GitHub Repository</div>
+    <h1>jstudio Edited</h1>
+    <p>نسخه ویرایش‌شده jstudio با ارتقای Java Runtime، Gradle و چندین بهبود برای اجرای پروژه‌های Gradle روی اندروید.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/launchercs/Edited-jstudio/" target="_blank" rel="noopener">★ مشاهده GitHub</a>
+      <a class="btn secondary" href="https://github.com/launchercs/Edited-jstudio/releases" target="_blank" rel="noopener">⬇ Releases</a>
+    </div>
+  </div>
+</section>
+
+<section>
+<div class="container">
+  <div class="stats">
+    <div class="stat"><strong id="stars">—</strong><span>Stars</span></div>
+    <div class="stat"><strong id="forks">—</strong><span>Forks</span></div>
+    <div class="stat"><strong id="watchers">—</strong><span>Watchers</span></div>
+    <div class="stat"><strong id="commits">37</strong><span>Commits</span></div>
+  </div>
+</div>
+</section>
+
+<section id="features">
+<div class="container">
+  <h2 class="section-title">✨ امکانات و تغییرات</h2>
+  <p class="section-sub">موارد اعلام‌شده برای jstudio Edited v1.0</p>
+  <div class="grid">
+    <article class="card"><div class="icon">☕</div><h3>Java 25</h3><p>Java Runtime از Java 21 به Java 25 ارتقا داده شده است.</p></article>
+    <article class="card"><div class="icon">⚙️</div><h3>Gradle 9.7.0-rc-1</h3><p>نسخه Gradle از 9.3.2 به 9.7.0-rc-1 به‌روزرسانی شده است.</p></article>
+    <article class="card"><div class="icon">🚀</div><h3>Background Execution</h3><p>پشتیبانی از اجرای عملیات در پس‌زمینه اضافه شده است.</p></article>
+    <article class="card"><div class="icon">🔑</div><h3>Native keytool</h3><p>یکپارچه‌سازی Native برای ابزار keytool.</p></article>
+    <article class="card"><div class="icon">🎨</div><h3>Syntax Highlighting</h3><p>Textureهای جدید برای Syntax Highlighting رسمی اضافه شده‌اند.</p></article>
+    <article class="card"><div class="icon">📱</div><h3>Android 14+</h3><p>سازگاری بهتر با Android 14 و نسخه‌های جدیدتر و مدیریت حافظه بهتر.</p></article>
+  </div>
+</div>
+</section>
+
+<section id="version">
+<div class="container">
+  <h2 class="section-title">📦 نسخه v1.0</h2>
+  <p class="section-sub">اطلاعاتی که در README مخزن GitHub اعلام شده است.</p>
+  <div class="version">
+    <div class="card">
+      <div class="feature-list">
+        <div class="feature"><span>01</span><div><b>Java Runtime</b><small>Java 21 → Java 25</small></div></div>
+        <div class="feature"><span>02</span><div><b>Gradle</b><small>9.3.2 → 9.7.0-rc-1</small></div></div>
+        <div class="feature"><span>03</span><div><b>Background Execution</b><small>پشتیبانی از اجرای پس‌زمینه</small></div></div>
+        <div class="feature"><span>04</span><div><b>Memory Management</b><small>بهبود مدیریت حافظه</small></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px">APK</h3>
+      <div class="code">Gradle-Build-Tool-Edited-v1.0.apk</div>
+      <p style="margin-top:12px">برای دریافت فایل، صفحه Releases یا مخزن اصلی GitHub را بررسی کنید.</p>
+      <a class="btn primary" style="margin-top:15px" href="https://github.com/launchercs/Edited-jstudio/releases" target="_blank" rel="noopener">مشاهده Releases</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="usage">
+<div class="container">
+  <h2 class="section-title">📥 نحوه استفاده</h2>
+  <p class="section-sub">مراحل استفاده طبق README پروژه</p>
+  <div class="steps">
+    <div class="step"><div class="num">1</div>دانلود APK</div>
+    <div class="step"><div class="num">2</div>نصب برنامه</div>
+    <div class="step"><div class="num">3</div>اجرای برنامه</div>
+    <div class="step"><div class="num">4</div>باز کردن یا ساخت پروژه Gradle</div>
+    <div class="step"><div class="num">5</div>شروع Build</div>
+  </div>
+</div>
+</section>
+
+<section id="github">
+<div class="container">
+  <h2 class="section-title">🐙 GitHub Repository</h2>
+  <div class="card repo">
+    <div>
+      <h3>launchercs / Edited-jstudio</h3>
+      <p class="repo-url">github.com/launchercs/Edited-jstudio</p>
+      <p style="color:var(--muted);margin-top:8px">Public repository • 0 Issues • 0 Pull Requests</p>
+    </div>
+    <a class="btn primary" href="https://github.com/launchercs/Edited-jstudio/" target="_blank" rel="noopener">باز کردن GitHub</a>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>jstudio Edited</strong>
+    <p>Open Source Project • ساخته‌شده برای علاقه‌مندان توسعه اندروید</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">لینک مخزن کپی شد ✓</div>
+<button class="top" id="topBtn" aria-label="بازگشت به بالا">↑</button>
+
+<script>
+const repo="https://github.com/launchercs/Edited-jstudio/";
+const toast=document.getElementById("toast");
+function showToast(t="انجام شد ✓"){
+  toast.textContent=t;toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),1800);
+}
+document.getElementById("copyBtn").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText(repo);showToast("لینک مخزن کپی شد ✓")}
+  catch(e){showToast("کپی خودکار در دسترس نیست")}
+});
+
+async function loadGitHub(){
+  try{
+    const r=await fetch("https://api.github.com/repos/launchercs/Edited-jstudio");
+    if(!r.ok) throw new Error();
+    const d=await r.json();
+    document.getElementById("stars").textContent=d.stargazers_count ?? 0;
+    document.getElementById("forks").textContent=d.forks_count ?? 0;
+    document.getElementById("watchers").textContent=d.subscribers_count ?? 0;
+  }catch(e){
+    document.getElementById("stars").textContent="0";
+    document.getElementById("forks").textContent="0";
+    document.getElementById("watchers").textContent="1";
+  }
+}
+loadGitHub();
+
+const topBtn=document.getElementById("topBtn");
+window.addEventListener("scroll",()=>topBtn.style.display=scrollY>500?"grid":"none");
+topBtn.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+</script>
+</body>
+</html>
